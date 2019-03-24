@@ -1,5 +1,6 @@
 # Discord Bot for CS50
 
+import config as cfg
 import discord
 print(discord.__version__)
 
@@ -59,4 +60,4 @@ class MyClient(discord.Client):
             '?q=' + query)
             
 client = MyClient()
-client.run('NTU4MzMyNzQyNjEwMzIxNDA4.D3VTvA.0A4yDcW9cPFExPb1Oq3b4pu4aSs')
+client.run(cfg.discord['token'])
