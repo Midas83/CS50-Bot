@@ -1,3 +1,4 @@
 # Gitignore
 
 config.py
+.env
