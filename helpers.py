@@ -3,21 +3,18 @@
 from urllib.request import urlopen
 from lxml import html
 from bs4 import BeautifulSoup
-from dotenv import load_dotenv
-import os
+import config as cfg
 import requests
 import re
 
-# Load environment variables
-load_dotenv()
 
 # Logs in user to CS50.me using Github Oauth
 def get_scores():
     
     login_url = "https://github.com/login?client_id=4641d3506c478b0419d5&return_to=%2Flogin%2Foauth%2Fauthorize%3Fclient_id%3D4641d3506c478b0419d5"
     "%26scope%3Duser%253Aemail"
-    user = os.getenv("GITHUB_USERNAME")
-    pwd = os.getenv("GITHUB_PWD")
+    user = cfg.github['username']
+    pwd = cfg.github['password']
 
     # Initialize session
     with requests.Session() as s:
