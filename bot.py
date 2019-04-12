@@ -2,6 +2,7 @@
 
 import config as cfg
 import discord
+from helpers import get_scores
 print(discord.__version__)
 
 class MyClient(discord.Client):
@@ -36,7 +37,8 @@ class MyClient(discord.Client):
                 '- **!help:**  List of all available commands \n' + 
                 '- **!resources:** Returns a list of helpful resources \n' +
                 '- **!stack50 <search term>:** Returns results from the CS50 ' +
-                    'Stackexchange \n') 
+                    'Stackexchange \n' +
+                '- **!scores:** Returns grades for CS50 pset exercises') 
 
         # Provide a list of useful links and resources
         if command == '!resources':
@@ -79,6 +81,19 @@ class MyClient(discord.Client):
 
             await message.channel.send('https://cs50.stackexchange.com/search' +
             '?q=' + query)
-            
+
+        # Get CS50 Scores
+        if command == "!scores":
+            await message.channel.send('Sure thing!  Checking the gradebook. '
+            'This may take a few seconds.')
+
+            scores = get_scores()
+            msg = ''
+            for count, item in enumerate(scores):
+                msg = msg + scores[count]['branch'] + ' --> ' + \
+                scores[count]['score'] + '\n'
+
+            await message.channel.send(msg)
+
 client = MyClient()
 client.run(cfg.discord['token'])

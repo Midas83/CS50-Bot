@@ -94,8 +94,4 @@ def get_scores():
 
             grades.append(dct)
         
-        print(grades)
-
-        
-
-get_scores()
+        return grades
